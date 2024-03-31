@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+background-color:#D860DC ;
+
+  }
+  form {
+    margin-bottom: 20px;
+    display: inline-block;
+    text-align: left;
+background-color: yellow;
+
+  }
+  h1 {
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Medical Tracker</h1>
+
+<form id="medicationForm">
+  <label for="medicineName">Medicine Name:</label>
+  <input type="text" id="medicineName" required><br><br>
+  
+  <label for="dosage">Dosage:</label>
+  <input type="text" id="dosage" required><br><br>
+  
+  <label for="time">Time:</label>
+  <input type="time" id="time" required><br><br>
+  
+  <label for="date">Date:</label>
+  <input type="date" id="date" required><br><br>
+  
+  <label for="food">Food to Eat:</label>
+  <input type="text" id="food"><br><br>
+  
+  <label for="prescription">Prescription:</label><br>
+  <textarea id="prescription" rows="4" cols="50"></textarea><br><br>
+  
+  <button type="button" onclick="addMedication()">Add Medication</button>
+</form>
+
+<h2>Medication List</h2>
+<ul id="medicationList"></ul>
+
+<script>
+  function addMedication() {
+    var medicineName = document.getElementById("medicineName").value;
+    var dosage = document.getElementById("dosage").value;
+    var time = document.getElementById("time").value;
+    var date = document.getElementById("date").value;
+    var food = document.getElementById("food").value;
+    var prescription = document.getElementById("prescription").value;
+
+    var medication = {
+      name: medicineName,
+      dosage: dosage,
+      time: time,
+      date: date,
+      food: food,
+      prescription: prescription
+    };
+
+    // Add medication to list
+    var medicationList = document.getElementById("medicationList");
+    var listItem = document.createElement("li");
+    listItem.textContent = `Name: ${medicineName}, Dosage: ${dosage}, Time: ${time}, Date: ${date}, Food: ${food}, Prescription: ${prescription}`;
+    medicationList.appendChild(listItem);
+
+    // Set alarm
+    var dateTime = new Date(date + ' ' + time).getTime();
+    var currentTime = new Date().getTime();
+    var timeDifference = dateTime - currentTime;
+    if (timeDifference > 0) {
+      setTimeout(function() {
+        alert(`Time to take ${medicineName}!`);
+      }, timeDifference);
+    } else {
+      alert("Invalid date/time!");
+    }
+
+    // Reset form
+    document.getElementById("medicationForm").reset();
+  }
+</script>
+<script>
+        function setAlarm() {
+            var medicineName = document.getElementById('medicineName').value;
+            var time = document.getElementById('time').value;
+            
+            // You can implement further logic here to set an alarm using JavaScript or backend services
+            // For this example, we're just logging the details
+            
+            console.log("Alarm set for " + time + " to take " + medicineName);
+        }
+    </script>
+</head>
+<body>
+    <h1>Set Medicine Alarm</h1>
+    <form>
+        <label for="medicineName">Medicine Name:</label>
+        <input type="text" id="medicineName" name="medicineName" required><br><br>
+        
+        <label for="time">Alarm Time:</label>
+        <input type="time" id="time" name="time" required><br><br>
+        
+        <button type="button" onclick="setAlarm()">Set Alarm</button>
+    </form>
+</body>
+
+</body>
+</html>

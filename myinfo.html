@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+</head>
+<body>
+    <h2>User Information</h2>
+    <div id="addSection">
+        <h3>Add User</h3>
+        <form id="userForm">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age" required><br><br>
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br><br>
+            <label for="profilePic">Profile Picture:</label><br>
+            <input type="file" id="profilePic" name="profilePic" accept="image/*"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="userInfo" style="display: none;">
+        <h3>User Information</h3>
+        <p><strong>Name:</strong> <span id="displayedName"></span></p>
+        <p><strong>Age:</strong> <span id="displayedAge"></span></p>
+        <p><strong>Gender:</strong> <span id="displayedGender"></span></p>
+        <img src="" alt="Profile Picture" id="displayedProfilePic" style="max-width: 200px;"><br><br>
+        <button onclick="showAddSection()">Add Another User</button>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            var name = document.getElementById('name').value;
+            var age = document.getElementById('age').value;
+            var gender = document.getElementById('gender').value;
+            var profilePic = document.getElementById('profilePic').files[0];
+
+            document.getElementById('displayedName').textContent = name;
+            document.getElementById('displayedAge').textContent = age;
+            document.getElementById('displayedGender').textContent = gender;
+
+            if (profilePic) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('displayedProfilePic').src = e.target.result;
+                }
+                reader.readAsDataURL(profilePic);
+            }
+
+            document.getElementById('addSection').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'block';
+        });
+
+        function showAddSection() {
+            document.getElementById('addSection').style.display = 'block';
+            document.getElementById('userInfo').style.display = 'none';
+            document.getElementById('userForm').reset();
+        }
+    </script>
+</body>
+</html>

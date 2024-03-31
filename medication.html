@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medication Tracker</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body style="background-color: lightblue; font-family: Arial, sans-serif;">
+    <h2>Medication Tracker</h2>
+
+    <!-- Form to add medication details -->
+    <form id="medicationForm">
+        <label for="medicineName">Medicine Name:</label><br>
+        <input type="text" id="medicineName" name="medicineName" required><br>
+        
+        <label for="dosage">Dosage:</label><br>
+        <input type="text" id="dosage" name="dosage" required><br>
+        
+        <label for="time">Time:</label><br>
+        <input type="time" id="time" name="time" required><br>
+        
+        <label for="food">Food to be Taken:</label><br>
+        <input type="text" id="food" name="food" required><br>
+        
+        <button type="submit">Add Medication</button>
+    </form>
+
+    <!-- Medication list -->
+    <h3>Medication List</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Medicine Name</th>
+                <th>Dosage</th>
+                <th>Time</th>
+                <th>Food</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="medicationList">
+            <!-- Medication entries will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to add medication details
+        document.getElementById("medicationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get form values
+            var medicineName = document.getElementById("medicineName").value;
+            var dosage = document.getElementById("dosage").value;
+            var time = document.getElementById("time").value;
+            var food = document.getElementById("food").value;
+            
+            // Create table row for the new medication entry
+            var newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td>${medicineName}</td>
+                <td>${dosage}</td>
+                <td>${time}</td>
+                <td>${food}</td>
+                <td><button onclick="deleteMedication(this)">Delete</button></td>
+            `;
+            
+            // Append the new row to the medication list table
+            document.getElementById("medicationList").appendChild(newRow);
+            
+            // Clear form fields
+            document.getElementById("medicineName").value = "";
+            document.getElementById("dosage").value = "";
+            document.getElementById("time").value = "";
+            document.getElementById("food").value = "";
+        });
+        
+        // Function to delete medication entry
+        function deleteMedication(button) {
+            var row = button.parentNode.parentNode; // Get the row to be deleted
+            row.parentNode.removeChild(row); // Remove the row from the table
+        }
+    </script>
+<script>
+  function addMedication() {
+    var medicineName = document.getElementById("medicineName").value;
+    var dosage = document.getElementById("dosage").value;
+    var time = document.getElementById("time").value;
+    var date = document.getElementById("date").value;
+    var food = document.getElementById("food").value;
+    var prescription = document.getElementById("prescription").value;
+
+    var medication = {
+      name: medicineName,
+      dosage: dosage,
+      time: time,
+      date: date,
+      food: food,
+      prescription: prescription
+    };
+
+    // Add medication to list
+    var medicationList = document.getElementById("medicationList");
+    var listItem = document.createElement("li");
+    listItem.textContent = `Name: ${medicineName}, Dosage: ${dosage}, Time: ${time}, Date: ${date}, Food: ${food}, Prescription: ${prescription}`;
+    medicationList.appendChild(listItem);
+
+    // Set alarm
+    var dateTime = new Date(date + ' ' + time).getTime();
+    var currentTime = new Date().getTime();
+    var timeDifference = dateTime - currentTime;
+    if (timeDifference > 0) {
+      setTimeout(function() {
+        alert(`Time to take ${medicineName}!`);
+      }, timeDifference);
+    } else {
+      alert("Invalid date/time!");
+    }
+
+    // Reset form
+    document.getElementById("medicationForm").reset();
+  }
+</script>
+</body>
+</html>
