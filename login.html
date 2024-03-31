@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration and Login</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  input[type="text"], input[type="password"], input[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+</style>
+</head>
+<body>
+
+<h2>User Registration</h2>
+<form id="registrationForm" action="#" method="post">
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="submit" value="Register">
+</form>
+
+<script>
+  document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+    
+    // Get username and password from form
+    var username = this.elements["username"].value;
+    var password = this.elements["password"].value;
+    
+    // Save username and password (You might want to use backend or local storage for this)
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+    
+    alert("Registration Successful!");
+  });
+</script>
+
+<h2>User Login</h2>
+<form id="loginForm" action="header.html" method="post">
+  <input type="text" name="username" placeholder="Username" required>
+  <input type="password" name="password" placeholder="Password" required>
+  <input type="submit" value="Log In">
+</form>
+
+</body>
+</html>

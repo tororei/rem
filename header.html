@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Reminder</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <!-- Dropdown Menu -->
+    <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+            <a href="prof.html">Profile</a>
+            <a href="#">Logout</a>
+            <a href="#">
+    <style>
+        .add-section, .profile-details, .settings-menu {
+            display: none;
+        }
+    </style>
+</head>
+
+    
+    <!-- Form to add user details -->
+    <div class="add-section">
+        <form id="userForm" onsubmit="return false;">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age" required><br>
+            
+            <label for="gender">Gender:</label><br>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br>
+            
+            <label for="profilePic">Profile Picture:</label><br>
+            <input type="file" id="profilePic" name="profilePic" accept="image/*" required><br>
+            
+            <button onclick="addProfile()">Add Profile</button>
+        </form>
+    </div>
+
+    <!-- Profile details section -->
+    <div class="profile-details">
+        <h3>Profile Details:</h3>
+        <p><strong>Name:</strong> <span id="display-name"></span></p>
+        <p><strong>Age:</strong> <span id="display-age"></span></p>
+        <p><strong>Gender:</strong> <span id="display-gender"></span></p>
+        <p><strong>Profile Picture:</strong></p>
+        <img src="" id="display-profile-pic" alt="Profile Picture">
+    </div>
+
+    <!-- Settings menu -->
+    <div class="settings-menu">
+        <h3>Settings</h3>
+        <label for="fontSize">Font Size:</label>
+        <input type="range" id="fontSize" min="12" max="24" value="16"><br>
+        <label for="bgColor">Background Color:</label>
+        <input type="color" id="bgColor" value="#ffffff"><br>
+        <button onclick="applySettings()">Apply Settings</button>
+    </div>
+
+    <!-- Button to display profile details -->
+    <button onclick="displayProfile()">Profile</button>
+    <!-- Button to display settings menu -->
+    <button onclick="displaySettings()">Settings</button>
+
+    <script>
+        function addProfile() {
+            // Add profile details logic here
+        }
+
+        function displayProfile() {
+            // Display profile details section
+            document.querySelector('.profile-details').style.display = "block";
+        }
+
+        function displaySettings() {
+            // Display settings menu
+            document.querySelector('.settings-menu').style.display = "block";
+        }
+
+        function applySettings() {
+            // Apply settings logic here
+        }
+    </script></a>
+        </div>
+    </div>
+
+    <!-- Containers -->
+    <div class="container left">
+        <h2>my info</h2>
+        <a href="myinfo.html"><img src="logo.jpeg" alt="my info"width="50" height="50"></a>
+    </div>
+    <div class="container left">
+        <h2>Appointment</h2>
+        <a href="appointment.html"><img src="apo.jpeg" alt="Appointment"width="50" height="50"></a>
+    </div>
+    <div class="container right">
+        <h2>Medication History</h2>
+        <a href="mymedic.html"><img src="histo.jpeg" alt="Medication History"width="50" height="50"></a>
+    </div>
+    <div class="container right">
+        <h2>Medications</h2>
+        <a href="medication.html"><img src="medic.jpeg" alt="Medications"width="50" height="50"</a>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
